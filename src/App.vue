@@ -5,33 +5,13 @@
 </template>
 
 <style lang="scss">
-* {
-  box-sizing: border-box;
-  padding:0;
-  margin:0;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
+@import '~@/assets/style/reset.scss';
+@import '~@/assets/style/helper.scss';
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $font-hei;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  line-height: 1.5;
+  color: #333;
 }
 </style>
