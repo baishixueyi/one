@@ -27,31 +27,20 @@
     </div>
   </div>
 </template>
- <script>
-export default {
-  name: "NmberPad",
-  props: ["xxxx"], //外部属性
-  data() {
-    //内部属性
-    return {
-      type: "-", // '-代表支出 +代表收入'
-    };
-  },
-  mounted() {
-    //生命周期函数
-    console.log(this.xxx);
-  },
-  methods: {
-    //内部方法
-    selectedType(type) {
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator';
+
+  @Component
+  export default class NmberPad extends Vue {
+    type = '-';
+    selectedType(type: string) {
       if (type !== "-" && type !== "+") {
         throw new Error("type is nuknown");
       }
       this.type = type;
-    },
-  },
-};
- </script>
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
 @import "~@/assets/style/helper.scss";
