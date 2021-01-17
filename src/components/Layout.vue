@@ -1,6 +1,6 @@
 <template>
     <div class="vue-wraper">
-        <div class="content">
+        <div class="content" :class="classPrefix && `${classPrefix}-content`">
             <slot/>
         </div>
         <Nav/>
@@ -11,13 +11,12 @@
     import Vue from 'vue'
 
     export default Vue.extend({
-        
+        props:['classPrefix']
     })
 </script>
 
 <style lang="scss" scoped>
     .vue-wraper {
-        border:1px solid red;
         display: flex;
         flex-direction: column;
         height:100vh;
