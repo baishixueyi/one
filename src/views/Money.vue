@@ -2,7 +2,7 @@
   <Layout class-prefix="layout">
     <Labels />
     <Notes />
-    <NumberPad />
+    <NumberPad xxx="aaaa"/>
   </Layout>
 </template>
 
