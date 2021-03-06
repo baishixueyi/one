@@ -29,11 +29,11 @@
 </template>
 // TS ->编译 ->js->运行->浏览器
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator';
+  import { Component, Vue } from 'vue-property-decorator';
   @Component
   export default class NmberPad extends Vue {
     type = '-';
-    @Prop(Number) xxx: number | undefined;
+    //@Prop(Number) xxx:number | undefined;
     //Prop 告诉Vue xxx不是data是prop
     //Number 是告诉Vue xxx运行时是个Number
     //xxx 属性名
@@ -44,6 +44,7 @@
       }
       this.type = type;
     }
+    
   }
 </script>
 
