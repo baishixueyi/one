@@ -1,13 +1,19 @@
+import Notes from '@/components/Money/Notes.vue';
 <template>
     <label class="notes">
       <span>备注</span>
-      <input placeholder="在这里添加备注" type="text" />
+      <input placeholder="在这里添加备注" type="text" v-model="notes"/>
     </label>
 </template>
 
 <script>
     export default {
-        
+        name:'Notes',
+        data(){
+          return {
+            notes:''
+          }
+        }
     }
 </script>
 

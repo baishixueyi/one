@@ -8,43 +8,66 @@
         收入
       </li>
     </ul>
-    <input type="text" />
+    <input type="text" :value="output"/>
     <div class="numberPad">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>删除</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>清空</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button class="ok">OK</button>
-      <button class="zero">0</button>
-      <button>.</button>
+      <button @click="numbers">1</button>
+      <button @click="numbers">2</button>
+      <button @click="numbers">3</button>
+      <button @click="remove">删除</button>
+      <button @click="numbers">4</button>
+      <button @click="numbers">5</button>
+      <button @click="numbers">6</button>
+      <button @click="clear">清空</button>
+      <button @click="numbers">7</button>
+      <button @click="numbers">8</button>
+      <button @click="numbers">9</button>
+      <button @click="confirm" class="ok">OK</button>
+      <button @click="numbers" class="zero">0</button>
+      <button @click="numbers">.</button>
     </div>
   </div>
 </template>
 // TS ->编译 ->js->运行->浏览器
-<script lang="ts">
+<script>
   import { Component, Vue } from 'vue-property-decorator';
   @Component
   export default class NmberPad extends Vue {
     type = '-';
+    output = '0'
     //@Prop(Number) xxx:number | undefined;
     //Prop 告诉Vue xxx不是data是prop
     //Number 是告诉Vue xxx运行时是个Number
     //xxx 属性名
     //number | undefined 告诉TS xxx的编译时类型
-    selectedType(type: string) {
+    selectedType(type) {
       if (type !== "-" && type !== "+") {
         throw new Error("type is nuknown");
       }
       this.type = type;
     }
-    
+    numbers(even){
+      console.log(even)
+      const input = even.target.innerText;
+      if(this.output ==='0' && '0123456789'.indexOf(input)>=0){
+        this.output = input;
+      }else {
+        if(this.output.indexOf('.')>=0 && input ==='.'){
+          return;
+        }else {
+          this.output = this.output + input;
+        }
+        
+      }
+    }
+    remove(){
+      this.output = this.output.substr(0,this.output.length-1);
+    }
+    clear(){
+      this.output = '0';
+    }
+    confirm(){
+      console.log('确定');
+    }
   }
 </script>
 

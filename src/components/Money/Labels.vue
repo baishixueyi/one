@@ -1,26 +1,39 @@
+import { Component } from 'vue-property-decorator';
 <template>
     <div class="top">
       <ul class="labals">
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
-        <li>行</li>
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
-        <li>行</li>
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
+        <li :class="{selected:selectLables.indexOf(val)>=0} " v-for="val in dataSoruce" :key="val" @click="selectLabel">{{val}}</li>
       </ul>
-      <button class="newlabals">新增标签</button>
+      <button class="newlabals" @click="addLabels">新增标签</button>
     </div>
 </template>
 
 <script>
-    export default {
-        
+  import {Component,Prop,Vue} from 'vue-property-decorator';
+  @Component
+  export default class Labels extends Vue {
+    @Prop() dataSoruce
+    selectLables = []
+    selectLabel(e){
+      const selectVal = e.target.innerText;
+      const index = this.selectLables.indexOf(selectVal)
+      if(index>=0){
+        this.selectLables.splice(index,1)
+      }else {
+        this.selectLables.push(selectVal)
+      }
     }
+    addLabels(){
+      const name = window.prompt('请输入标签');
+      if(name!=''){
+        this.$emit('update:dataSoruce',[...this.dataSoruce,name]);
+      }else {
+        window.alert('标签名不能为空');
+      }
+      
+      console.log(name)
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -45,6 +58,10 @@
       color: #484848;
       margin-right: 14px;
       margin-top: 5px;
+      &.selected {
+        background: #484848;
+        color: #d9d9d9;
+      }
     }
   }
   > .newlabals {
