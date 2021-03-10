@@ -13,6 +13,11 @@ import Notes from '@/components/Money/Notes.vue';
           return {
             notes:''
           }
+        },
+        watch:{
+          notes(newValue){
+            this.$emit('update:value',newValue);
+          }
         }
     }
 </script>

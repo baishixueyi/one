@@ -9,7 +9,7 @@ import { Component } from 'vue-property-decorator';
 </template>
 
 <script>
-  import {Component,Prop,Vue} from 'vue-property-decorator';
+  import {Component,Prop,Vue, Watch} from 'vue-property-decorator';
   @Component
   export default class Labels extends Vue {
     @Prop() dataSoruce
@@ -22,11 +22,13 @@ import { Component } from 'vue-property-decorator';
       }else {
         this.selectLables.push(selectVal)
       }
+      this.$emit('update:value',this.selectLables)
     }
     addLabels(){
       const name = window.prompt('请输入标签');
       if(name!=''){
         this.$emit('update:dataSoruce',[...this.dataSoruce,name]);
+        
       }else {
         window.alert('标签名不能为空');
       }

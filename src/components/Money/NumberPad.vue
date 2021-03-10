@@ -29,10 +29,10 @@
 </template>
 // TS ->编译 ->js->运行->浏览器
 <script>
-  import { Component, Vue } from 'vue-property-decorator';
+  import { Component, Prop, Vue } from 'vue-property-decorator';
   @Component
   export default class NmberPad extends Vue {
-    type = '-';
+    @Prop() type
     output = '0'
     //@Prop(Number) xxx:number | undefined;
     //Prop 告诉Vue xxx不是data是prop
@@ -43,7 +43,8 @@
       if (type !== "-" && type !== "+") {
         throw new Error("type is nuknown");
       }
-      this.type = type;
+      //this.type = type;
+      this.$emit('update:type',type)
     }
     numbers(even){
       console.log(even)
@@ -66,6 +67,8 @@
       this.output = '0';
     }
     confirm(){
+      const data = [this.type,this.output]
+      this.$emit('update:value',data)
       console.log('确定');
     }
   }
