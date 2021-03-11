@@ -69,7 +69,8 @@
     confirm(){
       const data = [this.type,this.output]
       this.$emit('update:value',data)
-      console.log('确定');
+      this.$emit('submit',data);
+      this.output = '0';
     }
   }
 </script>

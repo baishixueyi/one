@@ -3,7 +3,7 @@
   <Layout class-prefix="layout">
     <Labels :data-soruce.sync = "labelData" @update:value="onChangeLabels"/>
     <Notes @update:value = "onChangeNotes"/>
-    <NumberPad @update:value = "onChangeNumber" :type.sync="record.type"/>
+    <NumberPad @submit="saveRecord" @update:value = "onChangeNumber" :type.sync="record.type"/>
     {{record}}
   </Layout>
 </template>
@@ -19,7 +19,8 @@ export default{
     data(){
       return {
         labelData:['衣','食','住','行'],
-        record:{tags:[],note:'',type:'-',number:0}
+        record:{tags:[],note:'',type:'-',number:0},
+        recordList:[]
       }
     },
     methods:{
@@ -34,7 +35,18 @@ export default{
       onChangeNumber(value){
         this.record.type = value[0]
         this.record.number = value[1]
+        this.record.time = new Date()
         console.log(value)
+      },
+      saveRecord(){
+        const newRecord = JSON.parse(JSON.stringify(this.record))
+        this.recordList.push(newRecord)
+        console.log(this.recordList);
+      }
+    },
+    watch: {
+      recordList(newValue){
+        localStorage.setItem('recordList',JSON.stringify(newValue))
       }
     }
   };
